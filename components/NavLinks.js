@@ -9,7 +9,7 @@ function NavLinks() {
   return (
     <>
         {links.map((link)=>(
-            <div>
+            <div className='z-5'>
                 <div className='px-3 text-left md:cursor-pointer py-3 group'>
                     <h1 className='flex justify-between items-center md:pr-0 pr-5' onClick={() => heading !== link.name ? setHeading(link.name) : setHeading("")}>
                         {link.name}

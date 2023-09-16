@@ -1,10 +1,25 @@
-import Head from 'next/head'
+import { useState, useEffect } from 'react';
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
-import styles from '../styles/Home.module.css'
 import cardList from "./data"
 
 export default function Home() {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+  }, []);
+
+  const handleButtonClick = (link) => {
+    if (isMobile){
+      window.open(link, "_blank")
+    }
+    else{
+      window.open(link, "_blank")
+    }
+  }
+
   return (
     <div className=''>
       <Navbar />
@@ -16,7 +31,7 @@ export default function Home() {
               <div className='p-5'>
                 <h3 className='text-3xl font-bold text-slate-700 mb-3'>{card.title}</h3>
                 <p className='text-lg font-normal text-gray-600 mb-5'>{card.text}</p>
-                <button className='bg-blue-400 p-3 justify-center mx-auto items-center rounded-lg text-white font-semibold '>Download Brochure</button>
+                <button onClick={() => handleButtonClick(card.link)} className='bg-blue-400 p-3 justify-center mx-auto items-center rounded-lg text-white font-semibold '>{isMobile ? "Download Brochure" : "Open Brochure"}</button>
               </div>
             </div>
           ))}
